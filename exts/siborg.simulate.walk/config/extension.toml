@@ -13,7 +13,7 @@ description="A simple extension to make walking agents follow a goal."
 readme  = "docs/README.md"
 
 # URL of the extension source repository.
-repository = ""
+repository = "https://github.com/cadop/siborg-simulate-walk"
 
 # One of categories for UI.
 category = "Simulate"
