@@ -52,11 +52,17 @@ class CustomBehavior(CharacterBehavior):
         # We don't really need this right now, but just a reminder of other possible commands
         return super().get_command(command)
 
-    def read_commands_from_file(self):
+    # def read_commands_from_file(self):
+    #     ''' Overwritten method to skip the file reading part '''
+    #     # The command parser creates this format, so we just use it for now
+    #     return [['GoTo', '0', '0', '0', '0']]
+
+
+    def get_simulation_commands(self):
         ''' Overwritten method to skip the file reading part '''
         # The command parser creates this format, so we just use it for now
         return [['GoTo', '0', '0', '0', '0']]
-
+    
     def on_update(self, current_time: float, delta_time: float):
         """
         Called on every update. Initializes character at start,
@@ -82,7 +88,7 @@ class CustomBehavior(CharacterBehavior):
             if self.current_command:
                 # First get where the character currently is
                 # Get the current goal attribute
-                goal_position = omni.usd.utils.get_world_transform_matrix(self.goal_prim).ExtractTranslation()
+                goal_position = omni.usd.get_world_transform_matrix(self.goal_prim).ExtractTranslation()
                 new_goal = (goal_position[0], goal_position[1], goal_position[2], 0)
 
                 # Two options to try `query_navmesh_path` and `validate_navmesh_point`
